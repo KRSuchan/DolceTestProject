@@ -1,0 +1,8 @@
+# created by virtualenv automatically
+.env
+Scripts/
+Lib/
+admin/
+.vscode/
+__pycache__/
+pyvenv.cfg
