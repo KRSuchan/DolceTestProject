@@ -4,11 +4,18 @@ import firebase_admin
 import requests
 from bs4 import BeautifulSoup
 from firebase_admin import credentials, db
+import time
 
 
 def updateRestaurant():
     url = 'https://www.kumoh.ac.kr/ko/restaurant02.do'
-    response = requests.get(url)
+
+    try:
+        response = requests.get(url)
+    except Exception as e:
+        print("occured Exception : ", e)
+        time.sleep(5)
+        response = requests.get(url)
 
     lunch = []
     dinner = []

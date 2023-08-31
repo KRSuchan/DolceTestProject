@@ -34,11 +34,16 @@ def getBusesToUniv(cityCode):
         busCnt = jsonBody.get('totalCount')
         jsonBody = jsonBody.get('items').get('item')
         # 나온 버스 개수만큼 버스 번호, 남은 정류장 수 획득
-        for i in range(0, busCnt):
-            arrPrevStationCnt.append(jsonBody[i].get('arrprevstationcnt'))
-            routeNo.append(jsonBody[i].get('routeno'))
-            resultDict["bus"].append({"routeno": routeNo[i],
-                                      "arrprevstationcnt": arrPrevStationCnt[i]})
+        try:
+            for i in range(0, busCnt):
+                arrPrevStationCnt.append(jsonBody[i].get('arrprevstationcnt'))
+                routeNo.append(jsonBody[i].get('routeno'))
+                resultDict["bus"].append({"routeno": routeNo[i],
+                                          "arrprevstationcnt": arrPrevStationCnt[i]})
+        except Exception as e:
+            print("occured Exception :", e)
+            print("busCnt :", busCnt)
+            print("get Erorr busCnt repeating for i :", i)
         print(resultDict)
     # 서버 상태코드나 resultCode가 비정상일 경우 : 500같은 경우
     else:
